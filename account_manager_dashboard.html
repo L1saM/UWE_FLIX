@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+Account Manager
+{% endblock %}
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h2>Welcome to the Account Manager dashboard</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+{% endblock %}

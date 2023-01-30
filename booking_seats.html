@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}
+Choose a seat
+{% endblock %}
+{% block content%}
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+{% load templates %}
+<h2>Ticket and Seat Selection</h2>
+<hr/>
+<form id="seats" method= "POST">
+    {% csrf_token %}
+
+    {% for ticket in tickets %}
+        <h3>{{ ticket.ticket_type }}</h4>
+        {% if discount > 0.00 %}
+            <p>THERE IS AN ACTIVE DISCOUNT: Discounted Price: £{{ ticket.ticket_price|sub:discount }}</p>
+        {% else %}
+            <p>Price: £{{ ticket.ticket_price }}</p>
+        {% endif %}
+        <input type="number" name="{{ ticket.ticket_type }}" min="0" max="10" value="0">
+    {% endfor %}
+
+    <br>
+    <br>
+    <h3>SELECT SEATS:</h3>
+
+    {% for seat in seats %}
+        {% if seat.booked == False %}
+            {% if forloop.counter|divisibleby:"2" and covid_distancing == True %}
+                <input type="checkbox" name="seat" value="{{ seat.id }}" disabled>
+            {% else %}
+                <input type="checkbox" name="seat" value="{{ seat.id }}">
+            {% endif %}
+        {% elif seat.booked == True %}
+            <input type="checkbox" name="seat" value="{{ seat.id }}" disabled>
+        {% endif %}
+
+        {% if forloop.counter|divisibleby:"15" %}
+            <br>
+        {% endif %}
+
+    {% endfor %}
+
+    <br>
+    <br>
+    <input type="submit" value="Confirm changes">
+</form> 
+{% endblock %}

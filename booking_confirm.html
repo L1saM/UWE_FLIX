@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}
+Choose a seat
+{% endblock %}
+{% block content%}
+<h2>Confirm Booking</h2>
+<hr/>
+
+<h3>BOOKING DETAILS:</h3>
+<p>Showing: {{ showing.showing_date }} - {{ showing.showing_time }}</p>
+<p>Film: {{ film.title }}</p>
+<p>Screen: {{ showing.screen_id_id }}</p>
+<p>Seats: 
+    <br>
+    {% for seat in selectedSeats %}
+        {{ seat.seat_num }}<br> 
+    {% endfor %}
+</p>
+<p>Tickets:
+    <br>
+    {% for ticket in ticketOrder %}
+        {{ ticket.ticketType }} x {{ ticket.ticketQuantity }}<br>
+    {% endfor %}
+</p>
+<p>Total Cost: £{{ orderTotal }}</p>
+
+<form id="confirm" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm">
+</form> 
+{% endblock %}

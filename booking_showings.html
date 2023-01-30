@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}
+Choose a showing
+{% endblock %}
+{% block content%}
+<h2>Showing Selection</h2>
+<hr/>
+<form id="showings" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm changes">
+</form> 
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}
+Student
+{% endblock %}
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h2>Welcome to the Student dashboard</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+<h3>Add Credit: </h3>
+<p>Current Credit: £{{ credit }}</p>
+<form id="student_credit" action method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm">
+</form> 
+
+{% endblock %}

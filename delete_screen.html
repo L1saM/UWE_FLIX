@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+cinema manager - Delete Screens below
+{% endblock %}
+{% block content%}
+<h2>Cinema manager- Welcome to the screen deletion page</h2>
+<hr/>
+<h3> Delete Screen:</h3>
+<form id="delete_screen" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm changes"> 
+</form> 
+
+{% endblock %}

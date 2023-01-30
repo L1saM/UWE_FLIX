@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+cinema manager- Delete clubs below
+{% endblock %}
+{% block content%}
+<h2>Cinema manager- Welcome to the club deletion page</h2>
+<hr/>
+<h3> Delete Club:</h3>
+<form id="delete_club" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm changes"> 
+</form> 
+
+{% endblock %}

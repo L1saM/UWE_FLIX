@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+cinema manager- Add films below
+{% endblock %}
+{% block content%}
+<h2>Cinema manager- Welcome to the film editor page</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+<form id="films" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm changes">
+</form> 
+
+{% endblock %}

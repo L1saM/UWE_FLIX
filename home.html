@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+{% load templates %}
+{% block content%}
+<h1>Welcome to the UWEFlix home page!</h1>
+<hr/>
+<h2>Current Films avaliable to watch:</h2>
+<ul>
+    {% for film in films %}
+        <li><p>{{ film.title }}</p></li>
+    {% endfor %}
+</ul>
+
+<hr/>
+<h2>Make Booking:</h2>
+{% if user|has_group:"Club Representitive" %}
+    <h3 style='color: red'>This is to be used for student bookings, to make a club booking please go to the club rep dashboard!</h3>
+{% endif %}
+<h3>Click the drop down below to select a booking date:</h3>
+<!--Movie dropdown list options-->
+<p>
+    <form id="booking_films" method= "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Confirm changes">
+    </form> 
+</p>
+{% endblock %}

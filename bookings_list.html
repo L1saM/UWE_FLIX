@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}
+My Bookings
+{% endblock %}
+{% block content%}
+<h2>My Bookings</h2>
+<hr/>
+
+{% if bookings %}
+    {% for booking in bookings %}
+        <p>Booking Made: {{ booking.booking_date }}</p>
+        <p>Showing ID: {{ booking.showing_id_id }}</p>
+        <p>Tickets:
+            <br>
+            Adult x {{ booking.adult_ticket_quantity }}<br>
+            Child x {{ booking.child_ticket_quantity }}<br>
+            Student x {{ booking.student_ticket_quantity }}<br>
+        </p>
+        <p>Total Cost: £{{ booking.total_price }}</p>
+
+        <a class="link-button" href="{% url 'booking_cancel' booking_id=booking.id %}">Cancel Booking</a>
+        <hr/>
+    {% endfor %}
+{% else %}
+    <p>You have no bookings</p>
+
+    <h2>Booking Search:</h2>
+    <form id="booking_search" method= "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Confirm">
+    </form> 
+{% endif %}
+
+{% endblock %}

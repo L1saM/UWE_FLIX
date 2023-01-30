@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}
+accounts manager
+{% endblock %}
+{% block content%}
+<h2>Welcome to the Accounts Manager page</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+<h3> View daily transactions : </h3>
+
+<p> Choose from the list of dates below:
+    <form id="daily_transactions" method= "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Confirm changes">
+    </form> 
+</p>
+
+<h3>Total Profit For Daily Bookings: {{ total_revenue_for_day }}</h3>
+
+{% for booking in bookings %}
+    <p>Booking ID: {{ booking.id }}</p>
+    <p>Booking Date: {{ booking.booking_date }}</p>
+    <p>Club booking?: {{ booking.club_booking }}</p>
+    <p>Adult Tickets: {{ booking.adult_ticket_quantity }}</p>
+    <p>Child Tickets: {{ booking.child_ticket_quantity }}</p>
+    <p>Student Tickets: {{ booking.student_ticket_quantity }}</p>
+    <p>Booking Total: {{ booking.total_price }}</p>
+    <hr/>
+{% endfor %}
+{% endblock %}

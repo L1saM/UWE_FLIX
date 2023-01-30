@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}
+Club Rep
+{% endblock %}
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h2>Welcome to the Club Rep dashboard</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+<h3>Club: {{ club }}</h3>
+
+<h3>Add Credit: </h3>
+<p>Current Credit: £{{ credit }}</p>
+<form id="club_credit" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm">
+</form>
+
+
+<h3>Make Booking: </h3>
+<a class="link-button" href="{% url 'club_booking_page' %}">Club Booking</a>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}
+cinema manager
+{% endblock %}
+{% block content%}
+
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<h2>Welcome to the Cinema manager dashboard</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+<h3>Add: </h3>
+<a class="link-button" href="{% url 'create_film' %}">Add Film</a>
+<a class="link-button" href="{% url 'create_screen' %}">Add Screen</a>
+<a class="link-button" href="{% url 'create_showing' %}">Add Showing</a>
+<a class="link-button" href="{% url 'create_club' %}">Add Club</a>
+
+<h3>Delete: </h3>
+<a class="link-button" href="{% url 'delete_film' %}">Delete Film</a>
+<a class="link-button" href="{% url 'delete_screen' %}">Delete Screen</a>
+<a class="link-button" href="{% url 'delete_showing' %}">Delete Showing</a>
+<a class="link-button" href="{% url 'delete_club' %}">Delete Club</a>
+
+<h3> CINEMA CONTROLS: </h3>
+<form id="cinema_controls" method= "POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm changes">
+</form> 
+
+{% endblock %}

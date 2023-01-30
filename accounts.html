@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}
+accounts manager
+{% endblock %}
+{% block content%}
+<h2>Welcome to the Accounts Manager page</h2>
+<hr/>
+<h3> Make any needed alterations below:</h3>
+
+<h3> View daily transactions : </h3>
+<a class="link-button" href="{% url 'daily_transactions' %}">View Daily Transactions</a>
+
+<br>
+
+<h3>View monthly financial Reports: </h3>
+<a class="link-button" href="{% url 'monthly_transactions' %}">View Monthly Transactions</a>
+
+{% endblock %}
